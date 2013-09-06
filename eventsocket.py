@@ -222,7 +222,10 @@ class EventProtocol(EventSocket):
 
     def _plainEvent(self, ctx):
         name = ctx.data.get("Event_Name")
-        if name:
+        if (name == "CUSTOM"):
+            name = urllib.unquote(ctx.data.get("Event-Subclass"))
+            evname = "on" + string.capwords(, "::").replace("::", "")
+        elif name:
             evname = "on" + string.capwords(name, "_").replace("_", "")
 
         method = getattr(self, evname, None)
