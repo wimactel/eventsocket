@@ -224,7 +224,7 @@ class EventProtocol(EventSocket):
         name = ctx.data.get("Event_Name")
         if (name == "CUSTOM"):
             name = urllib.unquote(ctx.data.get("Event-Subclass"))
-            evname = "on" + string.capwords(, "::").replace("::", "")
+            evname = "on" + string.capwords(name, "::").replace("::", "")
         elif name:
             evname = "on" + string.capwords(name, "_").replace("_", "")
 
